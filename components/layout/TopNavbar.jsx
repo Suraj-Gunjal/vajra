@@ -2,11 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Bell, Search, Activity, Shield, Wifi } from "lucide-react";
+import { Bell, Search, Activity, Shield, Wifi, Menu } from "lucide-react";
 import { checkHealth } from "@/lib/api";
 import LanguageToggle from "../LanguageToggle";
 
-export default function TopNavbar() {
+export default function TopNavbar({ onMenuClick }) {
   const [health, setHealth] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -26,36 +26,51 @@ export default function TopNavbar() {
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="sticky top-0 z-40 flex items-center justify-between px-6 py-3"
+      className="sticky top-0 z-40 flex items-center justify-between px-4 sm:px-6 py-3 gap-3 md:gap-5"
       style={{
         background: "rgba(10, 15, 28, 0.8)",
         backdropFilter: "blur(20px)",
         borderBottom: "1px solid rgba(255,255,255,0.06)",
       }}
     >
-      {/* Search */}
-      <div className="relative w-80">
-        <Search
-          className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4"
-          style={{ color: "#6B7280" }}
-        />
-        <input
-          type="text"
-          placeholder="Search threats, scans, reports..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="pl-10 pr-4 py-2 text-sm rounded-xl w-full"
+      <div className="flex items-center gap-3 w-full md:w-auto flex-1">
+        {/* Mobile Menu Toggle */}
+        <button
+          onClick={onMenuClick}
+          className="md:hidden p-2 rounded-xl transition-colors cursor-pointer"
           style={{
             background: "rgba(17, 24, 39, 0.6)",
             border: "1px solid rgba(255,255,255,0.06)",
           }}
-        />
+        >
+          <Menu className="w-5 h-5 text-gray-300" />
+        </button>
+
+        {/* Search */}
+        <div className="relative w-full md:w-80 flex-1">
+          <Search
+            className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4"
+            style={{ color: "#6B7280" }}
+          />
+          <input
+            type="text"
+            placeholder="Search..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="pl-10 pr-4 py-2 text-sm rounded-xl w-full"
+            style={{
+              background: "rgba(17, 24, 39, 0.6)",
+              border: "1px solid rgba(255,255,255,0.06)",
+              color: "#E5E7EB",
+            }}
+          />
+        </div>
       </div>
 
       {/* Status & Actions */}
-      <div className="flex items-center gap-5">
-        {/* System Status */}
-        <div className="flex items-center gap-4">
+      <div className="flex items-center gap-3 sm:gap-5">
+        {/* System Status - Hidden on small screens */}
+        <div className="hidden lg:flex items-center gap-4">
           <motion.div
             className="flex items-center gap-2 px-3 py-1.5 rounded-lg"
             style={{

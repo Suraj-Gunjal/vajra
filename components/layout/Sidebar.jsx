@@ -14,13 +14,18 @@ import {
   ChevronLeft,
   ChevronRight,
   Zap,
+  X,
 } from "lucide-react";
 import { useState } from "react";
 import { useTranslate } from "@/hooks/useTranslate";
 
-export default function Sidebar() {
+export default function Sidebar({
+  mobileOpen,
+  setMobileOpen,
+  collapsed,
+  setCollapsed,
+}) {
   const pathname = usePathname();
-  const [collapsed, setCollapsed] = useState(false);
   const { t } = useTranslate();
 
   const navItems = [
@@ -46,48 +51,67 @@ export default function Sidebar() {
       initial={{ width: 260 }}
       animate={{ width: collapsed ? 72 : 260 }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
-      className="fixed left-0 top-0 h-screen z-50 flex flex-col"
+      className={`fixed left-0 top-0 h-screen z-50 flex flex-col transition-transform duration-300 md:translate-x-0 ${
+        mobileOpen
+          ? "translate-x-0 w-[260px] max-w-[80vw]"
+          : "-translate-x-full"
+      }`}
       style={{
         background: "linear-gradient(180deg, #0d1322 0%, #0A0F1C 100%)",
         borderRight: "1px solid rgba(255,255,255,0.06)",
       }}
     >
       {/* Logo */}
-      <Link
-        href="/"
-        className="flex items-center gap-3 px-5 py-6 border-b cursor-pointer hover:bg-white/5 transition-colors"
+      <div
+        className="flex items-center gap-3 px-5 py-6 border-b"
         style={{ borderColor: "rgba(255,255,255,0.06)" }}
       >
-        <div
-          className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 animate-glow-pulse"
-          style={{ background: "linear-gradient(135deg, #00F5FF, #8B5CF6)" }}
+        <Link
+          href="/"
+          className="flex items-center gap-3 cursor-pointer hover:bg-white/5 transition-colors flex-1"
+          onClick={() => setMobileOpen && setMobileOpen(false)}
         >
-          <Zap className="w-5 h-5 text-white" />
-        </div>
-        <AnimatePresence>
-          {!collapsed && (
-            <motion.div
-              initial={{ opacity: 0, width: 0 }}
-              animate={{ opacity: 1, width: "auto" }}
-              exit={{ opacity: 0, width: 0 }}
-              className="overflow-hidden whitespace-nowrap"
-            >
-              <h1
-                className="text-base font-bold tracking-wider"
-                style={{ fontFamily: "Orbitron, sans-serif", color: "#00F5FF" }}
+          <div
+            className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 animate-glow-pulse"
+            style={{ background: "linear-gradient(135deg, #00F5FF, #8B5CF6)" }}
+          >
+            <Zap className="w-5 h-5 text-white" />
+          </div>
+          <AnimatePresence>
+            {!collapsed && (
+              <motion.div
+                initial={{ opacity: 0, width: 0 }}
+                animate={{ opacity: 1, width: "auto" }}
+                exit={{ opacity: 0, width: 0 }}
+                className="overflow-hidden whitespace-nowrap"
               >
-                {t("sidebar.title") || "ThreatFuse"}
-              </h1>
-              <p
-                className="text-[10px] tracking-widest"
-                style={{ color: "#8B5CF6" }}
-              >
-                AI SECURITY
-              </p>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </Link>
+                <h1
+                  className="text-base font-bold tracking-wider"
+                  style={{
+                    fontFamily: "Orbitron, sans-serif",
+                    color: "#00F5FF",
+                  }}
+                >
+                  {t("sidebar.title") || "ThreatFuse"}
+                </h1>
+                <p
+                  className="text-[10px] tracking-widest"
+                  style={{ color: "#8B5CF6" }}
+                >
+                  AI SECURITY
+                </p>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </Link>
+        {/* Mobile close button */}
+        <button
+          className="md:hidden"
+          onClick={() => setMobileOpen && setMobileOpen(false)}
+        >
+          <X className="w-5 h-5 text-gray-400" />
+        </button>
+      </div>
 
       {/* Navigation */}
       <nav className="flex-1 py-4 px-3 space-y-1 overflow-y-auto">
@@ -96,7 +120,11 @@ export default function Sidebar() {
           const Icon = item.icon;
 
           return (
-            <Link key={item.href} href={item.href}>
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={() => setMobileOpen && setMobileOpen(false)}
+            >
               <motion.div
                 whileHover={{
                   x: 4,
