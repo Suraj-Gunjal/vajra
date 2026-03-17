@@ -180,7 +180,7 @@ export default function Landing() {
             >
               {t("landing.subtitle")}
             </p>
-
+              <br />
             <div className="flex flex-wrap items-center gap-4">
               <Link href="/dashboard">
                 <motion.button
@@ -219,25 +219,7 @@ export default function Landing() {
             <div
               className="flex items-center gap-10 mt-12 pt-8"
               style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
-            >
-              {[
-                { value: "6+", label: "Detection Agents" },
-                { value: "< 5s", label: "Avg Scan Time" },
-                { value: "99%", label: "Accuracy" },
-              ].map((stat) => (
-                <div key={stat.label}>
-                  <div
-                    className="text-2xl font-bold font-mono"
-                    style={{ color: "#00F5FF" }}
-                  >
-                    {stat.value}
-                  </div>
-                  <div className="text-xs mt-1" style={{ color: "#6B7280" }}>
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
-            </div>
+            ></div>
           </motion.div>
 
           {/* 3D Globe */}
@@ -283,7 +265,9 @@ export default function Landing() {
               className="text-sm max-w-xl mx-auto"
               style={{ color: "#9CA3AF" }}
             >
+              <br /> 
               {t("landing.featuresSubtitle")}
+                <br />
             </p>
           </motion.div>
 
@@ -336,7 +320,7 @@ export default function Landing() {
 
       {/* CTA */}
       <section className="relative z-10 w-full">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 py-20">
+        <div className="max-w-7xl mx-20 px-46 md:px-12 py-20">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -348,6 +332,7 @@ export default function Landing() {
               className="text-2xl font-bold mb-4"
               style={{ fontFamily: "Orbitron", color: "#E5E7EB" }}
             >
+              
               {t("landing.ctaTitle")}
             </h2>
             <p className="text-sm mb-8" style={{ color: "#9CA3AF" }}>
