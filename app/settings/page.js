@@ -52,6 +52,7 @@ export default function Settings() {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
+        style={{ paddingLeft: "4rem" }}
       >
         <motion.div variants={itemVariants} className="mb-6">
           <h1

@@ -11,7 +11,7 @@ export default function DashboardLayout({ children }) {
 
   return (
     <div
-      className="flex min-h-screen w-full relative"
+      className="flex min-h-screen w-full relative "
       style={{ background: "#0A0F1C" }}
     >
       <Sidebar
@@ -30,7 +30,7 @@ export default function DashboardLayout({ children }) {
       )}
 
       <div
-        className={`flex-1 flex flex-col min-w-0 w-full transition-all duration-300 ${isCollapsed ? "md:pl-[72px]" : "md:pl-[260px]"}`}
+        className={`flex-1 flex flex-col min-w-0 transition-all duration-300 dashboard-main lg:pl-72 ${isCollapsed ? "collapsed" : ""}`}
       >
         <TopNavbar onMenuClick={() => setSidebarOpen(!sidebarOpen)} />
         <motion.main

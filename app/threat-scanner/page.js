@@ -63,6 +63,7 @@ export default function ThreatScanner() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.4 }}
+        style={{ paddingLeft: "4rem" }}
       >
         <div className="mb-6">
           <h1

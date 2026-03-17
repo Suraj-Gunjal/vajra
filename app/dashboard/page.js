@@ -163,6 +163,7 @@ export default function Dashboard() {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
+        style={{ paddingLeft: "4rem" }}
       >
         {/* Page Title */}
         <motion.div variants={itemVariants} className="mb-6">
