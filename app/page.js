@@ -106,7 +106,7 @@ export default function Landing() {
                 className="text-lg font-bold tracking-wider"
                 style={{ fontFamily: "Orbitron", color: "#00F5FF" }}
               >
-                ThreatFuse
+                Vajra AI
               </h1>
             </div>
           </Link>

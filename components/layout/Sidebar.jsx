@@ -92,7 +92,7 @@ export default function Sidebar({
                     color: "#00F5FF",
                   }}
                 >
-                  {t("sidebar.title") || "ThreatFuse"}
+                  {t("sidebar.title") || "Vajra AI"}
                 </h1>
                 <p
                   className="text-[10px] tracking-widest"

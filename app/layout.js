@@ -3,7 +3,7 @@ import { LanguageProvider } from "../context/LanguageContext";
 import "./globals.css";
 
 export const metadata = {
-  title: "ThreatFuse AI — Cybersecurity Command Center",
+  title: "Vajra AI — Cybersecurity Command Center",
   description:
     "AI-powered cybersecurity platform for detecting phishing emails, malicious URLs, and emerging cyber threats. Built for Security Operations Centers.",
   keywords:

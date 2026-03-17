@@ -7,7 +7,7 @@ export default {
     aiIntel: "AI Intelligence",
     reports: "Reports",
     settings: "Settings",
-    title: "ThreatFuse",
+    title: "Vajra AI",
   },
   navbar: {
     home: "Home",
@@ -60,7 +60,7 @@ export default {
     ctaSubtitle:
       "Start scanning for threats with our multi-agent AI defense platform.",
     footer:
-      "© 2026 ThreatFuse AI — Built by Team Pixel Pilots for IndiaNext Hackathon",
+      "© 2026 Vajra AI — Built by Team Pixel Pilots for IndiaNext Hackathon",
   },
   hero: {
     title: "AI Powered Cybersecurity Platform",
